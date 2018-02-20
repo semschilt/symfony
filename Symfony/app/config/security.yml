@@ -21,9 +21,13 @@ security:
             cost: 12
 
     firewalls:
+        # secured_area:
+        #     logout:
+        #         path:   /logout
+        #         target: /
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            pattern: ^/(_(profiler|wdt|error)|css|images|js)/
             security: false
 
         main:
@@ -35,7 +39,7 @@ security:
 
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~
-    
+
     access_control:
         #require ROLE_ADMIN for /admin*
         - { path: ^/admin, roles: ROLE_ADMIN }
