@@ -1,0 +1,30 @@
+{% extends 'base' %}
+{% block body %}
+
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <form action="{{ path('login') }}" method="post">
+        <table>
+            <caption>Login</caption>
+            <tr>
+                <td>Username:</td>
+                <td>
+                    <input type="text" autocomplete="off" id="username" placeholder="type here your Username">
+                </td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td>
+                    <input type="password" autocomplete="off" id="password" name="_password" placeholder="type here your Password">
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                <input type="submit" value="login"><input type="reset" value="test">
+                <td>   
+            </tr>
+        </table>        
