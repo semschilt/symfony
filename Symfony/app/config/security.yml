@@ -41,6 +41,7 @@ security:
             form_login: 
                 login_path: login
                 check_path: login
+                success_handler: app.login_handler
             logout:
                 path: /logout
                 target: /   
@@ -48,3 +49,4 @@ security:
     access_control:
         #require ROLE_ADMIN for /admin*
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/user, roles: ROLE_USER }
