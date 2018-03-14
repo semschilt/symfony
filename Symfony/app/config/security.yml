@@ -4,21 +4,16 @@ security:
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        in_memory:
-            memory: 
-                users:
-                    sem:
-                        password: $2y$12$j8H5xppHAQ00h7nbBZIx4eRKzAZehJq9mLQV6WTFGUDMzt/4VWKLq
-                        roles: 'ROLE_USER'
-                    
-                    admin:
-                        password: $2y$12$j4zX9qBVxkzfTkbtBBDkbOD9ai1NKyxeV1uOYeGtCtIXbESZLlPNC
-                        roles: 'ROLE_ADMIN'
+       our_db_provider:
+            entity:
+                class: AppBundle:User
+                property: username
+                # if you're using multiple entity managers
+                # manager_name: customer 
     
     encoders:
-        Symfony\Component\Security\Core\User\User: 
+        AppBundle\Entity\User: 
             algorithm: bcrypt
-            cost: 12
 
     firewalls:
         # secured_area:
@@ -31,6 +26,8 @@ security:
             security: false
 
         main:
+            pattern: ^/
+            provider: our_db_provider
             anonymous: ~
             # activate different ways to authenticate
             logout_on_user_change: true
